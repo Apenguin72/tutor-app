@@ -1,6 +1,6 @@
 // Service worker：網路優先、離線退回快取。
 // 每次發版都要更新 VERSION（同時更新 js/version.js）。
-const VERSION = '0.6.0';
+const VERSION = '1.0.0';
 const CACHE = 'tutor-app-' + VERSION;
 
 const ASSETS = [

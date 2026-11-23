@@ -112,7 +112,7 @@ body:has(.banner:not([hidden])) .view { padding-top: calc(var(--topbar-h) + var(
 .btn.danger { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, var(--line)); }
 .btn.danger.solid { background: var(--danger); color: #fff; border-color: var(--danger); }
 .btn.ghost { background: transparent; border-color: transparent; color: var(--primary); }
-.btn.small { min-height: 36px; padding: 0 12px; font-size: 14px; }
+.btn.small { min-height: var(--tap); padding: 0 12px; font-size: 14px; }
 .btn.block { width: 100%; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -142,7 +142,7 @@ textarea.input { resize: vertical; min-height: 88px; }
 .check input { width: 22px; height: 22px; accent-color: var(--primary); }
 
 .chip {
-  display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px;
+  display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 12px;
   border-radius: 18px; border: 1px solid var(--line); background: var(--surface); font-size: 15px; cursor: pointer;
 }
 .chip.on { background: var(--primary-weak); border-color: var(--primary); color: var(--primary); }
@@ -389,3 +389,6 @@ textarea.msg-input { flex: 1; min-height: var(--tap); max-height: 140px; resize:
 .backup-age { margin: 0 0 10px; font-weight: 600; }
 .file-btn { position: relative; cursor: pointer; }
 .version { text-align: center; color: var(--text-3); font-size: 13px; margin-top: 24px; }
+/* 7 個星期鈕要在 375px 寬下都至少 44px：往卡片內距延伸 */
+.wd-chips { gap: 2px; margin: 0 -10px; }
+.msg-edit summary { padding: 0 10px; margin-left: -10px; min-width: var(--tap); }
