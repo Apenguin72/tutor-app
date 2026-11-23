@@ -381,3 +381,11 @@ textarea.msg-input { flex: 1; min-height: var(--tap); max-height: 140px; resize:
 .log-list { display: flex; flex-direction: column; gap: 8px; }
 .log-item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
 .log-head { font-size: 13px; margin-bottom: 2px; }
+
+/* ===== 設定 ===== */
+.settings .section-title:first-child { margin-top: 0; }
+.settings .card { margin-bottom: 4px; }
+.notice { margin: 0 0 8px; padding: 10px 12px; background: #fff7d6; border-radius: 10px; color: #6b4e00; font-size: 14px; }
+.backup-age { margin: 0 0 10px; font-weight: 600; }
+.file-btn { position: relative; cursor: pointer; }
+.version { text-align: center; color: var(--text-3); font-size: 13px; margin-top: 24px; }
