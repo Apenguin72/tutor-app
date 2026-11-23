@@ -34,5 +34,5 @@ tests/parser.test.js
 
 ## 開發習慣
 - 每完成一個里程碑（見 SPEC.md 第 10 節）就 commit 一次，commit 訊息用中文寫清楚。
-- 修改 parser 後執行 `node --test tests/`，確認全部通過。
+- 修改 parser 後執行 `node --test`，確認全部通過。（Node 22 以後 `node --test tests/` 不會展開資料夾，所以不帶參數，讓它自動找 `**/*.test.js`。）
 - service worker：HTML 和 JS 採「網路優先、離線退回快取」，這樣更新才會生效。每次發版都要更新 `sw.js` 裡的版本號。

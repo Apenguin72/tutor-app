@@ -81,3 +81,23 @@ export async function shareOrDownload(filename, content, mime) {
   setTimeout(() => URL.revokeObjectURL(url), 4000);
   return 'downloaded';
 }
+
+/** 開始時間下拉選項（30 分鐘一格）；不在格子上的時間也會保留 */
+export function timeOptions(selected, { from = 6 * 60, to = 23 * 60 + 30 } = {}) {
+  const pad = (n) => String(n).padStart(2, '0');
+  const fmt = (m) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+  let html = '';
+  let found = false;
+  for (let m = from; m <= to; m += 30) {
+    const t = fmt(m);
+    if (t === selected) found = true;
+    html += `<option value="${t}" ${t === selected ? 'selected' : ''}>${t}</option>`;
+  }
+  if (selected && !found) html = `<option value="${selected}" selected>${selected}</option>` + html;
+  return html;
+}
+
+export function durationOptions(selected, list = [30, 45, 60, 90, 120, 150, 180]) {
+  const all = [...new Set([...list, selected].filter(Boolean))].sort((a, b) => a - b);
+  return all.map((d) => `<option value="${d}" ${d === selected ? 'selected' : ''}>${d} 分鐘</option>`).join('');
+}

@@ -1,8 +1,8 @@
 // 第三頁：學生
 import * as store from '../store.js';
-import { el, openSheet, toast, shareOrDownload, escapeHtml } from '../ui.js';
+import { el, openSheet, toast, shareOrDownload, escapeHtml, timeOptions } from '../ui.js';
 import { uid, normalizeCode } from '../util.js';
-import { nowTaipei, compactDate, WD_NAMES, timeToMin, minToTime } from '../dates.js';
+import { nowTaipei, compactDate, WD_NAMES } from '../dates.js';
 import { currentSlots, slotLabel, pendingLeaves } from '../schedule.js';
 import { buildStudentsCSV, studentSubjects, feeLabel } from '../csv.js';
 
@@ -69,16 +69,6 @@ async function exportCSV() {
   const csv = buildStudentsCSV(store.getData(), today);
   const res = await shareOrDownload(`學生名單_${compactDate(today)}.csv`, csv, 'text/csv;charset=utf-8');
   if (res === 'downloaded') toast('已下載學生名單');
-}
-
-function timeOptions(selected) {
-  let html = '';
-  for (let m = 6 * 60; m <= 23 * 60 + 30; m += 30) {
-    const t = minToTime(m);
-    html += `<option value="${t}" ${t === selected ? 'selected' : ''}>${t}</option>`;
-  }
-  if (selected && timeToMin(selected) % 30 !== 0) html = `<option value="${selected}" selected>${selected}</option>` + html;
-  return html;
 }
 
 function splitSubjects(text) {
