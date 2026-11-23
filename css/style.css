@@ -1,0 +1,189 @@
+/* ===== 色彩與尺寸 ===== */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --text: #1c1f24;
+  --text-2: #5b6370;
+  --text-3: #8a919c;
+  --line: #dde1e7;
+  --primary: #2563eb;
+  --primary-weak: #dbe7ff;
+  --danger: #d92d20;
+  --ok: #16a34a;
+  --orange: #ea7a12;
+  --orange-weak: #fff1e3;
+  --purple: #7c3aed;
+  --purple-weak: #f0e8ff;
+  --green: #15803d;
+  --green-weak: #e3f6e8;
+  --blue-weak: #e3edff;
+  --gray-weak: #e6e8ec;
+  --radius: 12px;
+  --tap: 44px;
+  --topbar-h: 52px;
+  --tabbar-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+body.sheet-open { overflow: hidden; }
+button, input, select, textarea { font: inherit; color: inherit; }
+input, select, textarea { font-size: 16px; } /* 避免 iOS 自動放大 */
+[hidden] { display: none !important; }
+
+/* ===== 頂部列 ===== */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  height: calc(var(--topbar-h) + var(--safe-top));
+  padding: var(--safe-top) calc(8px + var(--safe-right)) 0 calc(16px + var(--safe-left));
+  display: flex; align-items: center; gap: 4px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar h1 { font-size: 19px; margin: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topbar-actions { display: flex; gap: 4px; align-items: center; }
+
+.icon-btn {
+  min-width: var(--tap); min-height: var(--tap);
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; background: transparent; border-radius: 10px; color: var(--text-2);
+  font-size: 18px; cursor: pointer; padding: 0 8px;
+}
+.icon-btn:active, .icon-btn.active { background: var(--surface-2); color: var(--primary); }
+
+/* ===== 主要區域 ===== */
+.view {
+  padding: calc(var(--topbar-h) + var(--safe-top) + 12px) calc(16px + var(--safe-right)) calc(var(--tabbar-h) + var(--safe-bottom) + 16px) calc(16px + var(--safe-left));
+  min-height: 100vh; min-height: 100dvh;
+  outline: none;
+}
+.banner {
+  position: fixed; z-index: 15; left: 0; right: 0;
+  top: calc(var(--topbar-h) + var(--safe-top));
+  padding: 8px calc(16px + var(--safe-right)) 8px calc(16px + var(--safe-left));
+  background: #fff7d6; color: #6b4e00; font-size: 14px;
+  display: flex; gap: 8px; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid #f0dc8c;
+}
+body:has(.banner:not([hidden])) .view { padding-top: calc(var(--topbar-h) + var(--safe-top) + 72px); }
+
+.empty { color: var(--text-3); text-align: center; padding: 48px 16px; }
+
+/* ===== 底部分頁列 ===== */
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  height: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding: 0 var(--safe-right) var(--safe-bottom) var(--safe-left);
+  display: flex; background: var(--surface); border-top: 1px solid var(--line);
+}
+.tabbar a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  color: var(--text-3); text-decoration: none; font-size: 11px; min-height: var(--tap);
+}
+.tabbar a svg { width: 26px; height: 26px; }
+.tabbar a.active { color: var(--primary); }
+
+/* ===== 按鈕與表單 ===== */
+.btn {
+  min-height: var(--tap); padding: 0 16px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  font-size: 16px; font-weight: 500; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
+}
+.btn:active { filter: brightness(0.95); }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn.danger { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, var(--line)); }
+.btn.danger.solid { background: var(--danger); color: #fff; border-color: var(--danger); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--primary); }
+.btn.small { min-height: 36px; padding: 0 12px; font-size: 14px; }
+.btn.block { width: 100%; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-row > .btn { flex: 1; }
+
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.field > span, .field > label { font-size: 14px; color: var(--text-2); }
+.field .req { color: var(--danger); }
+.input, select.input, textarea.input {
+  width: 100%; min-height: var(--tap); padding: 8px 12px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+  -webkit-appearance: none; appearance: none;
+}
+select.input {
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-3) 50%), linear-gradient(135deg, var(--text-3) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px; background-repeat: no-repeat; padding-right: 32px;
+}
+textarea.input { resize: vertical; min-height: 88px; }
+.input:focus { outline: 2px solid var(--primary-weak); border-color: var(--primary); }
+.input.invalid { border-color: var(--danger); }
+.field-error { color: var(--danger); font-size: 13px; }
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; min-width: 0; }
+.hint { font-size: 13px; color: var(--text-3); }
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); }
+.check input { width: 22px; height: 22px; accent-color: var(--primary); }
+
+.chip {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px;
+  border-radius: 18px; border: 1px solid var(--line); background: var(--surface); font-size: 15px; cursor: pointer;
+}
+.chip.on { background: var(--primary-weak); border-color: var(--primary); color: var(--primary); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px;
+}
+.section-title { font-size: 14px; color: var(--text-2); margin: 20px 0 8px; font-weight: 600; }
+
+/* ===== 底部滑出面板 ===== */
+.sheet-wrap { position: fixed; inset: 0; z-index: 50; }
+.sheet-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.35); opacity: 0; transition: opacity 0.2s; }
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  max-height: calc(100% - var(--safe-top) - 24px);
+  display: flex; flex-direction: column;
+  background: var(--bg); border-radius: 16px 16px 0 0;
+  transform: translateY(100%); transition: transform 0.22s ease-out;
+  padding-bottom: var(--safe-bottom);
+}
+.sheet-wrap.open .sheet-backdrop { opacity: 1; }
+.sheet-wrap.open .sheet { transform: translateY(0); }
+.sheet-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px calc(8px + var(--safe-right)) 8px calc(16px + var(--safe-left));
+  border-bottom: 1px solid var(--line);
+}
+.sheet-head h2 { margin: 0; font-size: 17px; }
+.sheet-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px calc(16px + var(--safe-right)) 20px calc(16px + var(--safe-left)); }
+@media (min-width: 640px) {
+  .sheet { left: 50%; right: auto; width: 560px; transform: translate(-50%, 100%); }
+  .sheet-wrap.open .sheet { transform: translate(-50%, 0); }
+}
+
+/* ===== 提示 ===== */
+.toast {
+  position: fixed; left: 50%; z-index: 60;
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 16px);
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  background: rgba(28, 31, 36, 0.92); color: #fff; padding: 10px 16px; border-radius: 20px;
+  font-size: 14px; transition: all 0.2s; max-width: calc(100% - 32px);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
