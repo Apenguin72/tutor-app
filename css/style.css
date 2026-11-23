@@ -324,3 +324,60 @@ a.btn { text-decoration: none; }
   .lesson .ln-sub, .lesson .tag { display: none; }
   .lesson .ln-name { font-size: 10px; }
 }
+
+/* ===== 訊息頁 ===== */
+.view-messages { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 150px); }
+.topbar-actions .btn.small { min-height: var(--tap); padding: 0 8px; }
+.cards { display: flex; flex-direction: column; gap: 12px; }
+.msg-card { position: relative; padding-right: 44px; }
+.msg-card .card-x { position: absolute; top: 0; right: 0; color: var(--text-3); font-size: 22px; }
+.msg-src { margin: 0 0 6px; font-size: 13px; color: var(--text-3); white-space: pre-wrap; word-break: break-word; }
+.msg-student { margin: 0; font-size: 15px; }
+.msg-summary { margin: 4px 0 8px; font-size: 16px; font-weight: 600; }
+.msg-error { color: var(--danger); margin: 4px 0 8px; font-weight: 600; }
+.msg-card.status-done { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); background: color-mix(in srgb, var(--green-weak) 45%, var(--surface)); }
+.msg-card.status-done .msg-summary { color: var(--green); }
+.msg-card.status-cancelled { opacity: 0.6; }
+.msg-card.status-cancelled .msg-summary { text-decoration: line-through; }
+.msg-card.status-error { border-color: color-mix(in srgb, var(--danger) 40%, var(--line)); }
+.msg-card.status-info { border-color: var(--primary-weak); }
+.question { background: #fff8e6; border: 1px solid #f3dfa4; border-radius: 10px; padding: 10px; margin: 8px -32px 8px 0; }
+.q-text { margin: 0 0 8px; font-weight: 600; font-size: 15px; }
+.q-options .chip { min-height: var(--tap); }
+.q-input { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.q-input.row { flex-direction: row; }
+.q-input.row .btn { flex: 0 0 auto; }
+.msg-edit { margin: 8px -32px 8px 0; }
+.msg-edit summary { min-height: var(--tap); display: inline-flex; align-items: center; color: var(--primary); cursor: pointer; font-size: 15px; }
+.edit-box { padding: 8px 0; }
+.target-list { display: flex; flex-direction: column; max-height: 220px; overflow-y: auto; background: var(--surface-2); border-radius: 10px; padding: 0 10px; }
+.card-actions { margin-right: -32px; }
+.warn-text { color: #b45309; }
+
+.composer {
+  position: fixed; left: 0; right: 0; z-index: 18;
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding: 8px calc(10px + var(--safe-right)) 8px calc(10px + var(--safe-left));
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.composer-row { display: flex; gap: 8px; align-items: flex-end; }
+.code-wrap { position: relative; width: 116px; flex: 0 0 auto; }
+.code-input { padding-right: 40px; }
+.pick-btn { position: absolute; right: 0; top: 0; color: var(--text-2); }
+.code-hint { align-self: center; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.code-hint.ok { color: var(--primary); font-weight: 600; }
+.code-hint.bad { color: var(--danger); }
+textarea.msg-input { flex: 1; min-height: var(--tap); max-height: 140px; resize: none; line-height: 1.4; padding-top: 10px; }
+.send-btn { flex: 0 0 auto; }
+.pick-list { display: flex; flex-direction: column; gap: 6px; }
+.pick-item {
+  min-height: var(--tap); display: flex; gap: 10px; align-items: center; padding: 0 14px; text-align: left;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 16px; cursor: pointer;
+}
+.pick-item .muted { margin-left: auto; font-size: 14px; }
+.log-list { display: flex; flex-direction: column; gap: 8px; }
+.log-item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
+.log-head { font-size: 13px; margin-bottom: 2px; }

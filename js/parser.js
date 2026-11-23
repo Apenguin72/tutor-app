@@ -791,7 +791,7 @@ function summarize(draft, ctx) {
     case 'stop_range':
       return draft.range ? `${fmtMDW(draft.range.from)}～${fmtMDW(draft.range.to)} → 區間停課` : '區間停課（請選擇起訖日期）';
     case 'move':
-      return `${tl || '（哪一堂？）'} → 改到 ${toText || (to?.date ? fmtMDW(to.date) : '（什麼時候？）')}`;
+      return `${tl || '（哪一堂？）'} → 改到 ${toText || (to?.date ? `${fmtMDW(to.date)}（幾點？）` : '（什麼時候？）')}`;
     case 'shift': {
       if (!tl) return '延後或提早（請選擇是哪一堂）';
       if (draft.minutes == null) return `${tl} → 延後或提早（幾分鐘？）`;
@@ -968,4 +968,9 @@ export function reparseAs(text, action, opts) {
   if (action === 'stop_range' && draft.action === 'leave' && !draft.targets.length) draft.action = 'stop_range';
   draft.summary = summarize(draft, ctx);
   return draft;
+}
+
+/** 使用者手動修改欄位後，重新產生判斷結果 */
+export function summarizeDraft(draft, opts) {
+  return summarize(draft, makeCtx(opts));
 }
